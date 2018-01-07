@@ -4,7 +4,7 @@
 ## 代码管理
 本项目采用的是 [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/)。更多信息参见 [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) 或咨询 [opencode@microsoft.com](mailto:opencode@microsoft.com) 。
 
-## 此仓储
-此仓储包含了一组文档以及相关的资料，用于提供对整个 Microsoft REST API 指南的支持。想要为此仓储贡献，请参考 [贡献指导][contribution-guidance] 。
+## 这个仓储
+这个仓储包含了一组文档以及相关的资料，用于提供对整个 Microsoft REST API 指南的支持。想要为此仓储贡献，请参考 [贡献指导][contribution-guidance] 。
 
 [贡献指导]: CONTRIBUTING.md
