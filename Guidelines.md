@@ -15,7 +15,7 @@
 
 # Microsoft REST API 指南
 ## 1 摘要
-Microsoft REST API 指南，是一种设计原则，用于鼓励应用开发者通过 RESTful HTTP 接口来访问资源。为了在遵循 Microsoft REST API 指南的平台上为开发者提供最流畅的体验，REST API **应该**遵循一致的设计指导原则，使其易于使用和直观。
+Microsoft REST API 指南，是一种设计原则，用于鼓励应用开发者通过 RESTful HTTP 接口来访问资源。为了在遵循 Microsoft REST API 指南的平台上为开发者提供最流畅的体验，REST API **应该**遵循一致的设计指导原则，有利于其易用性和直观性。
 
 Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTful 接口开发的一致性。
 
@@ -27,8 +27,8 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 - [Microsoft REST API 指南](#microsoft-rest-api-guidelines)
 	- [1 摘要](#1-abstract)
 	- [2 目录](#2-table-of-contents)
-	- [3 Introduction](#3-introduction)
-		- [3.1 Recommended reading](#31-recommended-reading)
+	- [3 介绍](#3-introduction)
+		- [3.1 推荐阅读](#31-recommended-reading)
 	- [4    Interpreting the guidelines](#4-interpreting-the-guidelines)
 		- [4.1    Application of the guidelines](#41-application-of-the-guidelines)
 		- [4.2    Guidelines for existing services and versioning of services](#42-guidelines-for-existing-services-and-versioning-of-services)
@@ -119,37 +119,36 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 <!-- /TOC -->
 
 ## 3 Introduction
-Developers access most Microsoft Cloud Platform resources via HTTP interfaces.
-Although each service typically provides language-specific frameworks to wrap their APIs, all of their operations eventually boil down to HTTP requests.
-Microsoft must support a wide range of clients and services and cannot rely on rich frameworks being available for every development environment.
-Thus a goal of these guidelines is to ensure Microsoft REST APIs can be easily and consistently consumed by any client with basic HTTP support.
+开发者通过 HTTP 接口来访问多数微软云平台资源。
+虽然每个服务通常提供了语言相关的框架用于封装它们的 API ，但所有它们的操作本质上还是归结于 HTTP 请求。
+微软必须支持更广泛的客户端并且服务不能依赖于每个开发环境中的富框架。
+因此这个指南的一个目标就是确保 Microsoft REST API 能够简单且一致地被任何具有基本 HTTP 支持的客户端使用。
 
-To provide the smoothest possible experience for developers, it's important to have these APIs follow consistent design guidelines, thus making using them easy and intuitive.
-This document establishes the guidelines to be followed by Microsoft REST API developers for developing such APIs consistently.
+为了给开发者提供尽可能流畅的体验，那么这些 API 遵循一致的设计指南是很重要的，这会使得使用它们很简单且直观。本文档建立的指南需要 Microsoft REST API 开发者来遵循，以便能够一致地开发这样的 API 。
 
-The benefits of consistency accrue in aggregate as well; consistency allows teams to leverage common code, patterns, documentation and design decisions.
+一致性的好处也是累积起来的，一致性可以允许团队利用公共代码、模式、文档和设计决策。
 
-These guidelines aim to achieve the following:
-- Define consistent practices and patterns for all API endpoints across Microsoft.
-- Adhere as closely as possible to accepted REST/HTTP best practices in the industry at-large.*
-- Make accessing Microsoft Services via REST interfaces easy for all application developers.
-- Allow service developers to leverage the prior work of other services to implement, test and document REST endpoints defined consistently.
-- Allow for partners (e.g., non-Microsoft entities) to use these guidelines for their own REST endpoint design.
+这些指导旨在实现以下目标：
+- 为微软所有的 API 端点定义一致的体验和模式。
+- 尽可能地严格遵守行业内 REST/HTTP 的最佳实践。*
+- 让所有应用程序开发人员都可以通过 REST 接口访问微软的服务。
+- 允许服务开发人员利用其他服务的前期工作来实现、测试和记录所定义的 REST 端点。
+- 允许合作伙伴（例如，非微软实体）为自己的 REST 端点设计使用这些指导原则。
 
-*Note: The guidelines are designed to align with building services which comply with the REST architectural style, though they do not address or require building services that follow the REST constraints.
-The term "REST" is used throughout this document to mean services that are in the spirit of REST rather than adhering to REST by the book.*
+*注意：这些指导原则是为了与符合 REST 体系结构风格的构建服务相一致的，尽管它们没有处理或要求构建遵循 REST 约束的服务。
+整个文档中使用的 "REST" 术语指的是那些以 REST 为指导思想而不是遵照书本的服务。*
 
-### 3.1 Recommended reading
-Understanding the philosophy behind the REST Architectural Style is recommended for developing good HTTP-based services.
-If you are new to RESTful design, here are some good resources:
+### 3.1 推荐阅读
+理解 REST 体系结构风格背后的哲学是为了开发良好的基于 HTTP 的服务。
+如果你刚接触 RESTful 设计，那么这里有一些好的资源可以参考：
 
-[REST on Wikipedia][rest-on-wikipedia] -- Overview of common definitions and core ideas behind REST.
+[REST on Wikipedia][rest-on-wikipedia] -- REST 的一般定义和核心思想的概述。
 
-[REST Dissertation][fielding] -- The chapter on REST in Roy Fielding's dissertation on Network Architecture, "Architectural Styles and the Design of Network-based Software Architectures"
+[REST Dissertation][fielding] -- Roy Fielding 在网络架构中的关于 REST 章节的论文，"Architectural Styles and the Design of Network-based Software Architectures"
 
-[RFC 7231][rfc-7231] -- Defines the specification for HTTP/1.1 semantics, and is considered the authoritative resource.
+[RFC 7231][rfc-7231] -- 定义 HTTP/1.1 语义的规范，被认为是权威的资源。
 
-[REST in Practice][rest-in-practice] -- Book on the fundamentals of REST.
+[REST in Practice][rest-in-practice] -- 关于 REST 基础的书。
 
 ## 4 Interpreting the guidelines
 ### 4.1 Application of the guidelines
