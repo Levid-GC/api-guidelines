@@ -32,7 +32,7 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 	- [4    指南解释](#4-指南解释)
 		- [4.1    应用指南](#41-应用指南)
 		- [4.2    现有服务和服务版本控制指南](#42-现有服务和服务版本控制指南)
-		- [4.3    Requirements language](#43-requirements-language)
+		- [4.3    要求性语言](#43-要求性语言)
 		- [4.4    许可](#44-许可)
 	- [5 分类](#5-分类)
 		- [5.1    Errors](#51-errors)
@@ -166,13 +166,13 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 当一个服务添加一个新的 API 时，这个 API 应该与同一版本的其它 API 保持一致。
 因此，如果结合该指南的 1.0 版本编写了一个服务，那么新添加的 API 也**应该**遵循 1.0 版本。然后，该服务就可以结合最新版本的指南并升级到服务的下一个主要版本。
 
-### 4.3 Requirements language
-The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
+### 4.3 要求性语言
+本文档中的 "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", 和 "OPTIONAL" 关键词解释参见 [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) 。
 
 ### 4.4 许可
 
-This work is licensed under the Creative Commons Attribution 4.0 International License.
-To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+本项工作的许可采用 Creative Commons Attribution 4.0 International License 。
+想要查看此许可，参见 http://creativecommons.org/licenses/by/4.0/ 或发送邮件至 Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 ## 5 分类
 As part of onboarding to Microsoft REST API Guidelines, services MUST comply with the taxonomy defined below.
