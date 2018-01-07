@@ -1,10 +1,10 @@
-# Microsoft REST API Guidelines
-The [Microsoft REST API Guidelines](Guidelines.md), as a design principle, encourages application developers to have resources accessible to them via a RESTful HTTP interface. To provide the smoothest possible experience for developers on platforms following the Microsoft REST API Guidelines, REST APIs SHOULD follow consistent design guidelines to make using them easy and intuitive.
+# Microsoft REST API 指南
+[Microsoft REST API 指南](Guidelines.md)，是一种设计原则，用于鼓励应用开发者通过 RESTful HTTP 接口来访问资源。为了在遵循 Microsoft REST API 指南的平台上为开发者提供最流畅的体验，REST API **应该**遵循一致的设计指导原则，使其易于使用和直观。
 
-## Code of Conduct
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+## 代码管理
+本项目采用的是 [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/)。更多信息参见 [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) 或咨询 [opencode@microsoft.com](mailto:opencode@microsoft.com) 。
 
-## This repository
-This repository contains a collection of documents and related materials supporting the overall Microsoft REST API Guidelines initiative. To contribute to this repository, please see the [contribution guidance][contribution-guidance].
+## 此仓储
+此仓储包含了一组文档以及相关的资料，用于提供对整个 Microsoft REST API 指南的支持。想要为此仓储贡献，请参考 [贡献指导][contribution-guidance] 。
 
-[contribution-guidance]: CONTRIBUTING.md
+[贡献指导]: CONTRIBUTING.md

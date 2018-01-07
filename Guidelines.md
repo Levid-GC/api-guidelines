@@ -1,5 +1,5 @@
-# Microsoft REST API Guidelines
-## Microsoft REST API Guidelines Working Group
+# Microsoft REST API 指南
+## Microsoft REST API 指南工作组
 
 |                              |                                        |                                          |
 |:-----------------------------|:---------------------------------------|:-----------------------------------------|
@@ -8,26 +8,25 @@
 | Rob Howard (ASG)             | Peter Torr  (OSG)                      | Chris Mullins (ASG)                      |
 
 <div style="font-size:150%">
-Document editors: John Gossman (C+E), Chris Mullins (ASG), Gareth Jones (ASG), Rob Dolin (C+E), Mark Stafford (C+E)<br/>
+文档编辑者：John Gossman (C+E), Chris Mullins (ASG), Gareth Jones (ASG), Rob Dolin (C+E), Mark Stafford (C+E)<br/>
 </div>
 
 
 
-# Microsoft REST API Guidelines
-## 1 Abstract
-The Microsoft REST API Guidelines, as a design principle, encourages application developers to have resources accessible to them via a RESTful HTTP interface.
-To provide the smoothest possible experience for developers on platforms following the Microsoft REST API Guidelines, REST APIs SHOULD follow consistent design guidelines to make using them easy and intuitive.
+# Microsoft REST API 指南
+## 1 摘要
+Microsoft REST API 指南，是一种设计原则，用于鼓励应用开发者通过 RESTful HTTP 接口来访问资源。为了在遵循 Microsoft REST API 指南的平台上为开发者提供最流畅的体验，REST API **应该**遵循一致的设计指导原则，使其易于使用和直观。
 
-This document establishes the guidelines Microsoft REST APIs SHOULD follow so RESTful interfaces are developed consistently.
+Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTful 接口开发的一致性。
 
-## 2 Table of contents
+## 2 目录
 <!-- TOC depthFrom:1 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [Microsoft REST API Guidelines 2.3](#microsoft-rest-api-guidelines-23)
-	- [Microsoft REST API Guidelines Working Group](#microsoft-rest-api-guidelines-working-group)
-- [Microsoft REST API Guidelines](#microsoft-rest-api-guidelines)
-	- [1 Abstract](#1-abstract)
-	- [2 Table of contents](#2-table-of-contents)
+- [Microsoft REST API 指南](#microsoft-rest-api-guidelines-23)
+	- [Microsoft REST API 指南工作组](#microsoft-rest-api-guidelines-working-group)
+- [Microsoft REST API 指南](#microsoft-rest-api-guidelines)
+	- [1 摘要](#1-abstract)
+	- [2 目录](#2-table-of-contents)
 	- [3 Introduction](#3-introduction)
 		- [3.1 Recommended reading](#31-recommended-reading)
 	- [4    Interpreting the guidelines](#4-interpreting-the-guidelines)
