@@ -22,19 +22,19 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 ## 2 目录
 <!-- TOC depthFrom:1 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [Microsoft REST API 指南](#microsoft-rest-api-guidelines-23)
-	- [Microsoft REST API 指南工作组](#microsoft-rest-api-guidelines-working-group)
-- [Microsoft REST API 指南](#microsoft-rest-api-guidelines)
-	- [1 摘要](#1-abstract)
-	- [2 目录](#2-table-of-contents)
-	- [3 介绍](#3-introduction)
-		- [3.1 推荐阅读](#31-recommended-reading)
-	- [4    Interpreting the guidelines](#4-interpreting-the-guidelines)
-		- [4.1    Application of the guidelines](#41-application-of-the-guidelines)
-		- [4.2    Guidelines for existing services and versioning of services](#42-guidelines-for-existing-services-and-versioning-of-services)
+- [Microsoft REST API 指南](#microsoft-rest-api-指南)
+	- [Microsoft REST API 指南工作组](#microsoft-rest-api-指南工作组)
+- [Microsoft REST API 指南](#microsoft-rest-api-指南-1)
+	- [1 摘要](#1-摘要)
+	- [2 目录](#2-目录)
+	- [3 介绍](#3-介绍)
+		- [3.1 推荐阅读](#31-推荐阅读)
+	- [4    指南解释](#4-指南解释)
+		- [4.1    应用指南](#41-应用指南)
+		- [4.2    现有服务和服务版本控制指南](#42-现有服务和服务版本控制指南)
 		- [4.3    Requirements language](#43-requirements-language)
-		- [4.4    License](#44-license)
-	- [5 Taxonomy](#5-taxonomy)
+		- [4.4    许可](#44-许可)
+	- [5 分类](#5-分类)
 		- [5.1    Errors](#51-errors)
 		- [5.2    Faults](#52-faults)
 		- [5.3    Latency](#53-latency)
@@ -144,37 +144,37 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 
 [REST on Wikipedia][rest-on-wikipedia] -- REST 的一般定义和核心思想的概述。
 
-[REST Dissertation][fielding] -- Roy Fielding 在网络架构中的关于 REST 章节的论文，"Architectural Styles and the Design of Network-based Software Architectures"
+[REST Dissertation][fielding] -- Roy Fielding 在网络架构中关于 REST 章节的论文，"Architectural Styles and the Design of Network-based Software Architectures"
 
 [RFC 7231][rfc-7231] -- 定义 HTTP/1.1 语义的规范，被认为是权威的资源。
 
 [REST in Practice][rest-in-practice] -- 关于 REST 基础的书。
 
-## 4 Interpreting the guidelines
-### 4.1 Application of the guidelines
-These guidelines are applicable to any REST API exposed publicly by Microsoft or any partner service.
-Private or internal APIs SHOULD also try to follow these guidelines because internal services tend to eventually be exposed publicly.
- Consistency is valuable to not only external customers but also internal service consumers, and these guidelines offer best practices useful for any service.
+## 4 指南解释
+### 4.1 应用指南
+这些指南适用于微软或任何合作伙伴公开的 REST API
+私有或内部的 API 也应该遵循这些指南，因为内部服务最终也趋向于公开。
+一致性不仅对外部客户和内部服务消费者都有价值，而且这些指南提供了对任何服务都有用的最佳实践。
 
-There are legitimate reasons for exemption from these guidelines.
-Obviously a REST service that implements or must interoperate with some externally defined REST API must be compatible with that API and not necessarily these guidelines.
-Some services MAY also have special performance needs that require a different format, such as a binary protocol.
+我们对这些指南的豁免有合法的理由。
+显然，实现或必须与外部定义的 REST API 进行互操作的 REST 服务必须与该 API 兼容，而不一定是这些指南。
+一些服务**可能**还具有特殊的性能需求，需要不同的格式，比如二进制协议。
 
-### 4.2 Guidelines for existing services and versioning of services
-We do not recommend making a breaking change to a service that pre-dates these guidelines simply for compliance sake.
-The service SHOULD try to become compliant at the next version release when compatibility is being broken anyway.
-When a service adds a new API, that API SHOULD be consistent with the other APIs of the same version.
-So if a service was written against version 1.0 of the guidelines, new APIs added incrementally to the service SHOULD also follow version 1.0. The service can then upgrade to align with the latest version of the guidelines at the service's next major release.
+### 4.2 现有服务和服务版本控制指南
+仅为了满足这些原则而对制定这些指南之前的服务进行破修改，我们是不推荐的。
+当兼容性会被破坏时，该服务**应该**尝试在发行下一个版本时兼容。
+当一个服务添加一个新的 API 时，这个 API 应该与同一版本的其它 API 保持一致。
+因此，如果结合该指南的 1.0 版本编写了一个服务，那么新添加的 API 也**应该**遵循 1.0 版本。然后，该服务就可以结合最新版本的指南并升级到服务的下一个主要版本。
 
 ### 4.3 Requirements language
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
-### 4.4 License
+### 4.4 许可
 
 This work is licensed under the Creative Commons Attribution 4.0 International License.
 To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-## 5 Taxonomy
+## 5 分类
 As part of onboarding to Microsoft REST API Guidelines, services MUST comply with the taxonomy defined below.
 
 ### 5.1 Errors
