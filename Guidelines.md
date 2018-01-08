@@ -35,11 +35,11 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 		- [4.3    要求性语言](#43-要求性语言)
 		- [4.4    许可](#44-许可)
 	- [5 分类](#5-分类)
-		- [5.1    Errors](#51-errors)
-		- [5.2    Faults](#52-faults)
-		- [5.3    Latency](#53-latency)
-		- [5.4    Time to complete](#54-time-to-complete)
-		- [5.5    Long running API faults](#55-long-running-api-faults)
+		- [5.1    错误](#51-错误)
+		- [5.2    故障](#52-故障)
+		- [5.3    延迟](#53-延迟)
+		- [5.4    完成时间](#54-完成时间)
+		- [5.5    耗时 API 故障](#55-耗时-api-故障)
 	- [6    Client guidance](#6-client-guidance)
 		- [6.1    Ignore rule](#61-ignore-rule)
 		- [6.2    Variable order rule](#62-variable-order-rule)
@@ -175,35 +175,35 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 想要查看此许可，参见 http://creativecommons.org/licenses/by/4.0/ 或发送邮件至 Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 ## 5 分类
-As part of onboarding to Microsoft REST API Guidelines, services MUST comply with the taxonomy defined below.
+作为 Microsoft REST API 指南的一部分，服务**必须**遵循以下的分类定义。
 
-### 5.1 Errors
-Errors, or more specifically Service Errors, are defined as a client passing invalid data to the service and the service _correctly_ rejecting that data.
-Examples include invalid credentials, incorrect parameters, unknown version IDs, or similar.
-These are generally "4xx" HTTP error codes and are the result of a client passing incorrect or invalid data.
+### 5.1 错误
+错误，或者更准确地来说是服务错误，指的就是客户端向服务传递非法的数据但是服务能够*正确地*拒绝这个非法数据。
+比如，非法的凭据，不正确的参数，未知的版本号，等等类似的错误。
+通常客户端如果传递不正确或者非法数据时，则使用 "4xx" HTTP 错误码作为响应。
 
-Errors do _not_ contribute to overall API availability.
+错误并*不会*提升 API 的整体可用性。
 
-### 5.2 Faults
-Faults, or more specifically Service Faults, are defined as the service failing to correctly return in response to a valid client request.
-These are generally "5xx" HTTP error codes.
+### 5.2 故障
+故障，或者更准确地来说是服务故障，指的就是服务没能够对合法的客户端请求做出正确的响应。
+通常的结果就是 "5xx" HTTP 错误码。
 
-Faults _do_ contribute to the overall API availability.
+故障*能够*提升 API 的整体可用性。
 
-Calls that fail due to rate limiting or quota failures MUST NOT count as faults.
-Calls that fail as the result of a service fast-failing requests (often for its own protection) do count as faults.
+由于速率限制或者配额分配失败导致的失败**禁止**被认为是故障。
+因服务请求的快速失败而导致的失败（通常是为了自身的保护）可以认为是故障。
 
-### 5.3 Latency
-Latency is defined as how long a particular API call takes to complete, measured as closely to the client as possible.
-This metric applies to both synchronous and asynchronous APIs in the same way.
-For long running calls, the latency is measured on the initial request and measures how long that call (not the overall operation) takes to complete.
+### 5.3 延迟
+延迟指的就是一个特定的 API 调用需要花费多长时间来完成，尽可能在客户端进行测量它。
+同步和异步的 API 使用同样的度量标准。
+对于耗时的调用，这个延迟是从初始的请求开始测算，直到调用任务（并不是整个操作）完成为止。
 
-### 5.4 Time to complete
-Services that expose long operations MUST track "Time to Complete" metrics around those operations.
+### 5.4 完成时间
+提供耗时操作的服务**必须**对这些操作使用“完成时间”的度量标准进行跟踪。
 
-### 5.5 Long running API faults
-For a Long Running API, it's possible for both the initial request to begin the operation and the request to retrieve the results to technically work (each passing back a 200), but for the underlying operation to have failed.
-Long Running faults MUST roll up as Faults into the overall Availability metrics.
+### 5.5 耗时 API 故障
+对于一个耗时的 API ，极有可能在初始化请求和获取结果的请求时都收到 200 状态码，但是底层的操作可能已经失败了。
+耗时的故障**必须**作为故障纳入整体可用性度量指标。
 
 ## 6 Client guidance
 To ensure the best possible experience for clients talking to a REST service, clients SHOULD adhere to the following best practices:
