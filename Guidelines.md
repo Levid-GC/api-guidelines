@@ -40,10 +40,10 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 		- [5.3    延迟](#53-延迟)
 		- [5.4    完成时间](#54-完成时间)
 		- [5.5    耗时 API 故障](#55-耗时-api-故障)
-	- [6    Client guidance](#6-client-guidance)
-		- [6.1    Ignore rule](#61-ignore-rule)
-		- [6.2    Variable order rule](#62-variable-order-rule)
-		- [6.3    Silent fail rule](#63-silent-fail-rule)
+	- [6    客户端指南](#6-client-guidance)
+		- [6.1    忽略规则](#61-ignore-rule)
+		- [6.2    变量顺序规则](#62-变量顺序规则)
+		- [6.3    静默失败规则](#63-静默失败规则)
 	- [7    Consistency fundamentals](#7-consistency-fundamentals)
 		- [7.1    URL structure](#71-url-structure)
 		- [7.2    URL length](#72-url-length)
@@ -152,7 +152,7 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 
 ## 4 指南解释
 ### 4.1 应用指南
-这些指南适用于微软或任何合作伙伴公开的 REST API
+这些指南适用于微软或任何合作伙伴公开的 REST API 。
 私有或内部的 API 也应该遵循这些指南，因为内部服务最终也趋向于公开。
 一致性不仅对外部客户和内部服务消费者都有价值，而且这些指南提供了对任何服务都有用的最佳实践。
 
@@ -205,26 +205,25 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 对于一个耗时的 API ，极有可能在初始化请求和获取结果的请求时都收到 200 状态码，但是底层的操作可能已经失败了。
 耗时的故障**必须**作为故障纳入整体可用性度量指标。
 
-## 6 Client guidance
-To ensure the best possible experience for clients talking to a REST service, clients SHOULD adhere to the following best practices:
+## 6 客户端指南
+为了确保客户端能够使用具有最佳体验的 REST 服务，客户端**应该**遵循以下最佳实践：
 
-### 6.1 Ignore rule
-For loosely coupled clients where the exact shape of the data is not known before the call, if the server returns something the client wasn't expecting, the client MUST safely ignore it.
-  
-Some services MAY add fields to responses without changing versions numbers.
-Services that do so MUST make this clear in their documentation and clients MUST ignore unknown fields.
+### 6.1 忽略规则
+对于低耦合的客户端来说，在发送请求前，数据的具体形态是未知的，如果服务器返回了一些不是客户端所期望的内容，客户端**必须**安全地忽略它们。
 
-### 6.2 Variable order rule
-Clients MUST NOT rely on the order in which data appears in JSON service responses.
-For example, clients SHOULD be resilient to the reordering of fields within a JSON object.
-When supported by the service, clients MAY request that data be returned in a specific order.
-For example, services MAY support the use of the _$orderBy_ querystring parameter to specify the order of elements within a JSON array.
-Services MAY also explicitly specify the ordering of some elements as part of the service contract.
-For example, a service MAY always return a JSON object's "type" information as the first field in an object to simplify response parsing on the client.
-Clients MAY rely on ordering behavior explicitly identified by the service.
+一些服务**可能**在未更改版本号的情况下在响应结果中添加了其它字段。如果服务确实这么做了，那么这**必须**在文档中明确指出，客户端也**必须**忽略未知的字段。
 
-### 6.3 Silent fail rule
-Clients requesting OPTIONAL server functionality (such as optional headers) MUST be resilient to the server ignoring that particular functionality.
+### 6.2 变量顺序规则
+客户端**禁止**依赖 JSON 服务响应中的数据顺序。
+举个例子，客户端**应该**能适应一个 JSON 对象内的字段重新排序。
+如果在服务支持的条件下，客户端**可能**请求以指定顺序返回数据。
+举个例子，服务**可能**支持 *$orderBy* 查询字符串参数的使用，它用于指定一个 JSON 数组中元素的顺序。
+服务也**可能**在服务契约中显式指定了一些元素的排序方式。
+举个例子，一个服务**可能**总是将返回的 JSON 对象的 "type" 信息作为第一个字段，用于简化客户端对响应的解析。
+客户端**可能**对于服务明确标识的排序行为有依赖。
+
+### 6.3 静默失败规则
+客户端请求**可选**的服务器端功能（比如可选的 HTTP 报头）**必须**对它保持一定的弹性，而不要忽略了特定的功能。 
 
 ## 7 Consistency fundamentals
 ### 7.1 URL structure
