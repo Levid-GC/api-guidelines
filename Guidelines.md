@@ -60,13 +60,13 @@ Microsoft REST API **应该**遵循本文档建立的指南，以便保持 RESTf
 	- [8    CORS](#8-cors)
 		- [8.1    Client guidance](#81-client-guidance)
 		- [8.2    Service guidance](#82-service-guidance)
-	- [9    Collections](#9-collections)
-		- [9.1    Item keys](#91-item-keys)
-		- [9.2    Serialization](#92-serialization)
-		- [9.3    Collection URL patterns](#93-collection-url-patterns)
-		- [9.4    Big collections](#94-big-collections)
-		- [9.5    Changing collections](#95-changing-collections)
-		- [9.6    Sorting collections](#96-sorting-collections)
+	- [9    集合](#9-集合)
+		- [9.1    元素 key](#91-元素-key)
+		- [9.2    序列化](#92-序列化)
+		- [9.3    集合 URL 模式](#93-集合-url-模式)
+		- [9.4    大数据量集合](#94-大数据量集合)
+		- [9.5    集合的更改](#95-集合的更改)
+		- [9.6    集合的排序](#96-集合的排序)
 		- [9.7    Filtering](#97-filtering)
 		- [9.8    Pagination](#98-pagination)
 		- [9.9    Compound collection operations](#99-compound-collection-operations)
@@ -637,39 +637,40 @@ In addition, when appropriate services MAY support the JSONP pattern for simple,
 In JSONP, services take a parameter indicating the format (_$format=json_) and a parameter indicating a callback (_$callback=someFunc_), and return a text/javascript document containing the JSON response wrapped in a function call with the indicated name.
 More on JSONP at Wikipedia: [JSONP](https://en.wikipedia.org/wiki/JSONP).
 
-## 9 Collections
-### 9.1 Item keys
-Services MAY support durable identifiers for each item in the collection, and that identifier SHOULD be represented in JSON as "id". These durable identifiers are often used as item keys.
+## 9 集合
+### 9.1 元素 key
+服务**可能**对集合中每个元素的持久化标识符提供支持，在 JSON 中这种标识符**应该**使用 *id* 表示。这些持久化标识符通常用作元素的 key 。
 
-Collections that support durable identifiers MAY support delta queries.
+支持持久化标识符的集合**可能**支持 delta 查询。
 
-### 9.2 Serialization
-Collections are represented in JSON using standard array notation.
+### 9.2 序列化
+在 JSON 中集合以标准的数组形式表示。
 
-### 9.3 Collection URL patterns
-Collections are located directly under the service root when they are top level, or as a segment under another resource when scoped to that resource.
+### 9.3 集合 URL 模式
+当集合处于顶级的时候那么它可以直接定位到服务根，而当集合处于其他资源的作用域下则作为其他资源的片段来定位。
 
-For example:
+示例：
 
 ```http
 GET https://api.contoso.com/v1.0/people
 ```
 
-Whenever possible, services MUST support the "/" pattern.
-For example:
+无论如何，服务都**必须**支持 "/" 模式。
+
+示例：
 
 ```http
 GET https://{serviceRoot}/{collection}/{id}
 ```
 
-Where:
-- {serviceRoot} – the combination of host (site URL) + the root path to the service
-- {collection} – the name of the collection, unabbreviated, pluralized
-- {id} – the value of the unique id property. When using the "/" pattern this MUST be the raw string/number/guid value with no quoting but properly escaped to fit in a URL segment.
+其中：
+*  {serviceRoot} - 主机（网站地址） + 服务根路径的组合
+*  {collection} - 集合名，未经缩写的复数形式名称
+*  {id} - 唯一的 id 属性值。使用 "/" 模式时，id **必须**是原始的不带有引号的 string/number/guid 值，但是必须经过正确地转译以融为 URL 的一部分。
 
-#### 9.3.1    Nested collections and properties
-Collection items MAY contain other collections.
-For example, a user collection MAY contain user resources that have multiple addresses:
+#### 9.3.1    嵌套集合及其属性
+集合元素**可能**会包含其他集合。
+比如，一个用户集合可能会包含多个地址信息：
 
 ```http
 GET https://api.contoso.com/v1.0/people/123/addresses
@@ -684,13 +685,13 @@ GET https://api.contoso.com/v1.0/people/123/addresses
 }
 ```
 
-### 9.4 Big collections
-As data grows, so do collections.
-Planning for pagination is important for all services.
-Therefore, when multiple pages are available, the serialization payload MUST contain the opaque URL for the next page as appropriate.
-Refer to the paging guidance for more details.
+### 9.4 大数据量集合
+随着数据量的增长，集合也越来越大。
+为所有服务规划分页功能是非常重要的。
+因此当集合具有多个分页信息时，序列化的负载**必须**包含一个合适且不透明的下一页 URL 。
+更多信息参见分页指南。
 
-Clients MUST be resilient to collection data being either paged or nonpaged for any given request.
+对于任何给定的请求，客户端**必须**能够灵活应对分页的或未分页的集合数据。
 
 ```json
 {
@@ -704,90 +705,90 @@ Clients MUST be resilient to collection data being either paged or nonpaged for 
 }
 ```
 
-### 9.5 Changing collections
-POST requests are not idempotent.
-This means that two POST requests sent to a collection resource with exactly the same payload MAY lead to multiple items being created in that collection.
-This is often the case for insert operations on items with a server-side generated id.
+### 9.5 集合的更改
+POST 请求不具有幂等性。
+这就意味着两个具有严格相同负载的 POST 请求如果向同一个集合资源发送请求**可能**会导致多个元素的创建。
+这种情况通常发生在元素 id 由服务器端生成的插入操作中。
 
-For example, the following request:
+举个例子，有如下请求：
 
 ```http
 POST https://api.contoso.com/v1.0/people
 ```
 
-Would lead to a response indicating the location of the new collection item:
+该请求将会获得一个指示新创建的集合元素位置的响应：
 
 ```http
 201 Created
 Location: https://api.contoso.com/v1.0/people/123
 ```
 
-And once executed again, would likely lead to another resource:
+再执行一次，很可能会导致另一个元素的创建：
 
 ```http
 201 Created
 Location: https://api.contoso.com/v1.0/people/124
 ```
 
-While a PUT request would require the indication of the collection item with the corresponding key instead:
+然而，PUT 请求需要使用到集合元素对应的 key 来表示该元素：
 
 ```http
 PUT https://api.contoso.com/v1.0/people/123
 ```
 
-### 9.6 Sorting collections
-The results of a collection query MAY be sorted based on property values.
-The property is determined by the value of the _$orderBy_ query parameter.
+### 9.6 集合的排序
+集合的查询**可能**会基于某个属性值进行排序。
+该属性由 *$orderBy* 查询参数值决定。
 
-The value of the _$orderBy_ parameter contains a comma-separated list of expressions used to sort the items.
-A special case of such an expression is a property path terminating on a primitive property.
+*$orderBy* 参数值是以逗号分隔的表达式列表。
+这种表达式的一种特殊情况就是一个属性路径会终止于一个基元属性。
 
-The expression MAY include the suffix "asc" for ascending or "desc" for descending, separated from the property name by one or more spaces.
-If "asc" or "desc" is not specified, the service MUST order by the specified property in ascending order.
+表达式**可能**包含 "asc" 或 "desc" 后缀分别用于表示升序和降序，后缀与属性名以一个或多个空格分隔。 
+如果没有指定 "asc" 或 "desc" ，服务**必须**对指定的属性执行升序排列。
 
-NULL values MUST sort as "less than" non-NULL values.
+NULL 值**必须**排在非 NULL 值前面。
 
-Items MUST be sorted by the result values of the first expression, and then items with the same value for the first expression are sorted by the result value of the second expression, and so on.
-The sort order is the inherent order for the type of the property.
+元素**必须**先根据第一个表达式的结果值进行排序，然后再根据第二个表达式进行排序，以此类推。
+排序顺序是属性类型的固有顺序。
 
-For example:
+示例：
 
 ```http
 GET https://api.contoso.com/v1.0/people?$orderBy=name
 ```
 
-Will return all people sorted by name in ascending order.
+该请求返回所有按照 name 属性升序排列的 people 。
 
-For example:
+示例：
 
 ```http
 GET https://api.contoso.com/v1.0/people?$orderBy=name desc
 ```
 
-Will return all people sorted by name in descending order.
+该请求返回所有按照 name 属性降序排列的 people 。
 
-Sub-sorts can be specified by a comma-separated list of property names with OPTIONAL direction qualifier.
+子排序可以通过以逗号分隔的带有**可选**方向限定符的属性名列表来指定。
 
-For example:
+示例：
 
 ```http
 GET https://api.contoso.com/v1.0/people?$orderBy=name desc,hireDate
 ```
 
-Will return all people sorted by name in descending order and a secondary sort order of hireDate in ascending order.
+该请求返回所有按照 name 降序排列，再按照 hireDate 升序二次排列的 people 。
 
-Sorting MUST compose with filtering such that:
+排序**必须**与过滤组合使用，比如：
 
 ```http
 GET https://api.contoso.com/v1.0/people?$filter=name eq 'david'&$orderBy=hireDate
 ```
 
-Will return all people whose name is David sorted in ascending order by hireDate.
+该请求返回所有姓名为 David ，并按照 hireDate 升序排列的 people 。
 
-#### 9.6.1 Interpreting a sorting expression
-Sorting parameters MUST be consistent across pages, as both client and server-side paging is fully compatible with sorting.
+#### 9.6.1 排序表达式注解
+各页面中的排序参数**必须**保持一致，客户端与服务器端分页都要与排序完全兼容。
 
-If a service does not support sorting by a property named in a _$orderBy_ expression, the service MUST respond with an error message as defined in the Responding to Unsupported Requests section.
+如果服务不支持 *$orderBy* 表达式中的属性, 服务**必须**返回一个在 “响应未支持的请求” 部分定义好的错误消息。
 
 ### 9.7 Filtering
 The _$filter_ querystring parameter allows clients to filter a collection of resources that are addressed by a request URL.
